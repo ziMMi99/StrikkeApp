@@ -41,14 +41,14 @@ AS
 SELECT * FROM project WHERE pro_name = @name;
 GO
 
-INSERT INTO recipe (name) VALUES ('Cozy Cable Knit Scarf');
-INSERT INTO recipe (name) VALUES ('Chunky Knit Blanket');
-INSERT INTO recipe (name) VALUES ('Fair Isle Mittens');
-INSERT INTO recipe (name) VALUES ('Lacy Knit Shawl');
-INSERT INTO recipe (name) VALUES ('Beanie with Pom-Pom');
+INSERT INTO recipe (rec_name) VALUES ('Cozy Cable Knit Scarf');
+INSERT INTO recipe (rec_name) VALUES ('Chunky Knit Blanket');
+INSERT INTO recipe (rec_name) VALUES ('Fair Isle Mittens');
+INSERT INTO recipe (rec_name) VALUES ('Lacy Knit Shawl');
+INSERT INTO recipe (rec_name) VALUES ('Beanie with Pom-Pom');
 
-INSERT INTO project (name) VALUES ('Knitted Sweater Project');
-INSERT INTO project (name) VALUES ('Baby Blanket Gift');
-INSERT INTO project (name) VALUES ('Knit Christmas Stockings');
-INSERT INTO project (name) VALUES ('Knitting Circle Meetup');
-INSERT INTO project (name) VALUES ('Knit Hat Donation Drive');
+INSERT INTO project (pro_name) VALUES ('Knitted Sweater Project');
+INSERT INTO project (pro_name) VALUES ('Baby Blanket Gift');
+INSERT INTO project (pro_name) VALUES ('Knit Christmas Stockings');
+INSERT INTO project (pro_name) VALUES ('Knitting Circle Meetup');
+INSERT INTO project (pro_name) VALUES ('Knit Hat Donation Drive');
