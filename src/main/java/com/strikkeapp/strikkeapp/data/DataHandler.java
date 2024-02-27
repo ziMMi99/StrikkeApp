@@ -50,49 +50,12 @@ public class DataHandler {
         }
     }
 
-    public ResultSet executeStoredProcedure(String procedure, String input) {
-        ResultSet resultSet = null;
-        try (CallableStatement cs = connection.prepareCall(procedure)) {
-            cs.setString(1, input);
-            resultSet = cs.executeQuery();
+    public CallableStatement makeCall(String procedure) {
+        try  {
+            return connection.prepareCall(procedure);
         } catch (SQLException e) {
             System.out.println("Could not create callable statement - " + e.getMessage());
+            return null;
         }
-        return resultSet;
-    }
-
-    public ResultSet executeStoredProcedure(String procedure, String input, String input2) {
-        ResultSet resultSet = null;
-        try (CallableStatement cs = connection.prepareCall(procedure)) {
-            cs.setString(1, input);
-            cs.setString(2, input2);
-            resultSet = cs.executeQuery();
-        } catch (SQLException e) {
-            System.out.println("Could not create callable statement - " + e.getMessage());
-        }
-        return resultSet;
-    }
-
-    public ResultSet executeStoredProcedure(String procedure, int input) {
-        ResultSet resultSet = null;
-        try (CallableStatement cs = connection.prepareCall(procedure)) {
-            cs.setInt(1, input);
-            resultSet = cs.executeQuery();
-        } catch (SQLException e) {
-            System.out.println("Could not create callable statement - " + e.getMessage());
-        }
-        return resultSet;
-    }
-
-    public ResultSet executeStoredProcedure(String procedure, int input, int input2) {
-        ResultSet resultSet = null;
-        try (CallableStatement cs = connection.prepareCall(procedure)) {
-            cs.setInt(1, input);
-            cs.setInt(2, input2);
-            resultSet = cs.executeQuery();
-        } catch (SQLException e) {
-            System.out.println("Could not create callable statement - " + e.getMessage());
-        }
-        return resultSet;
     }
 }

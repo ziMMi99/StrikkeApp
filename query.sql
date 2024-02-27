@@ -10,14 +10,14 @@ USE Strik_DB;
 
 CREATE TABLE recipe (
      rec_id INT IDENTITY (1,1) NOT NULL,
-     name NVARCHAR(100) NOT NULL,
+     rec_name NVARCHAR(100) NOT NULL,
 
      PRIMARY KEY (rec_id)
  );
 
 CREATE TABLE project (
     pro_id INT IDENTITY (1,1) NOT NULL,
-    name NVARCHAR(100) NOT NULL,
+    pro_name NVARCHAR(100) NOT NULL,
 
     PRIMARY KEY (pro_id)
 );
