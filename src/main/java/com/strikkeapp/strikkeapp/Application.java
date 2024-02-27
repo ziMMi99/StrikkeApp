@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("home.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("projects.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Strikke App");
         stage.setScene(scene);
