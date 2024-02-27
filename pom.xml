@@ -51,7 +51,7 @@
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
-            <version>12.6.1.jre11</version>
+            <version>12.4.2.jre11</version>
         </dependency>
 
     </dependencies>
@@ -76,7 +76,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.strikkeapp.strikkeapp/com.strikkeapp.strikkeapp.HelloApplication</mainClass>
+                            <mainClass>com.strikkeapp.strikkeapp/com.strikkeapp.strikkeapp.Application</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
