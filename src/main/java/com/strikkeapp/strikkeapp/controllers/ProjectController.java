@@ -1,27 +1,44 @@
 package com.strikkeapp.strikkeapp.controllers;
 
+import com.strikkeapp.strikkeapp.Application;
+import com.strikkeapp.strikkeapp.data.DataHandler;
 import com.strikkeapp.strikkeapp.data.ProjectData;
 import com.strikkeapp.strikkeapp.dbo.Project;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class ProjectController {
+public class ProjectController implements Initializable {
 
     @FXML
-    Button addProjectBtn;
-    @FXML
-    TextField projectName;
-    @FXML
-    TextArea projectDescripton, projectNotes;
+    VBox projectVbox;
 
+    private static Project currentProject;
+
+    public static Project getCurrentProject() {
+        return currentProject;
+    }
 
     public void setAddProjectBtn() {
         TextInputDialog textInputDialog = new TextInputDialog();
+        textInputDialog.getDialogPane().getStylesheets().add(Application.class.getResource("projects.css").toExternalForm());
 
         textInputDialog.setTitle("New Project");
         textInputDialog.setHeaderText("Enter Project information");
@@ -31,6 +48,7 @@ public class ProjectController {
         TextField pro_name = new TextField();
         TextArea pro_desc = new TextArea();
         TextArea pro_note = new TextArea();
+        pro_note.setPrefSize(100,100);
         pro_name.setPromptText("Enter project name");
         pro_desc.setPromptText("Enter project Description");
         pro_note.setPromptText("Enter project notes");
@@ -51,7 +69,7 @@ public class ProjectController {
         textInputDialog.getDialogPane().setContent(grid);
 
         textInputDialog.setResultConverter(dialogButton -> {
-            ArrayList<String> projectInfo = new ArrayList();
+            ArrayList<String> projectInfo = new ArrayList<>();
             if (dialogButton == ButtonType.FINISH) {
                 projectInfo.add(pro_name.getText());
                 projectInfo.add(pro_desc.getText());
@@ -60,7 +78,7 @@ public class ProjectController {
                 Project project = new Project(projectInfo.get(0), projectInfo.get(1), projectInfo.get(2));
 
                 ProjectData projectData = new ProjectData();
-                projectData.insertProjectIntoDB(project);
+                //projectData.insertProjectIntoDB(project);
 
                 addProject(project);
 
@@ -75,8 +93,46 @@ public class ProjectController {
     }
 
     private void addProject(Project project) {
-        System.out.println(project);
+        HBox projectHbox = new HBox();
+        Label projectTitle = new Label();
+
+        projectTitle.setText(project.getName());
+
+        projectHbox.getChildren().add(projectTitle);
+        projectVbox.getChildren().add(projectHbox);
+
+        projectHbox.getStyleClass().add("project-hbox");
+        projectHbox.setOnMouseClicked(mouseEvent -> {
+            try {
+                openProject(project.getName(), mouseEvent);
+            } catch (IOException e) {
+                e.getMessage();
+            }
+        });
 
     }
 
+    public void openProject(String projectTitle, MouseEvent event) throws IOException {
+        ProjectData data = new ProjectData();
+        currentProject = data.getProjectByName(projectTitle);
+
+        FXMLLoader loader = new FXMLLoader(Application.class.getResource("project_details.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        ProjectData data = new ProjectData();
+        ArrayList<Project> projects = data.getAllProjects();
+        for (Project project : projects) {
+            addProject(project);
+        }
+
+
+    }
 }

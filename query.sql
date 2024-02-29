@@ -36,13 +36,22 @@ AS
 SELECT * FROM recipe WHERE rec_name = @name;
 GO
 
-IF OBJECT_ID('project_getProject', 'P') IS NOT NULL
-    DROP PROCEDURE project_getProject;
+IF OBJECT_ID('project_getProjectByName', 'P') IS NOT NULL
+    DROP PROCEDURE project_getProjectByName;
 GO
 
-CREATE PROCEDURE project_getProject @name NVARCHAR(100)
+CREATE PROCEDURE project_getProjectByName @name NVARCHAR(100)
 AS
 SELECT * FROM project WHERE pro_name = @name;
+GO
+
+IF OBJECT_ID('project_getAllProjects') IS NOT NULL
+    DROP PROCEDURE project_getAllProjects;
+GO
+
+CREATE PROCEDURE project_getAllProjects
+AS
+SELECT * FROM project;
 GO
 
 IF OBJECT_ID('project_addProject', 'P') IS NOT NULL

@@ -1,0 +1,50 @@
+
+#AddProjectBtn {
+    -fx-background-color: green;
+    -fx-text-fill: white;
+    -fx-font-size: 20;
+    -fx-background-radius: 20;
+    -fx-padding: 8 15;
+}
+
+#AddProjectBtn:hover {
+    -fx-background-color: limegreen;
+    -fx-background-radius: 25;
+}
+
+#AddProjectBtn:pressed {
+    -fx-background-color: green;
+    -fx-background-radius: 25;
+}
+
+.project-hbox {
+    -fx-alignment: center;
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1;
+    -fx-padding: 10;
+}
+
+.project-hbox:hover {
+    -fx-background-color: #e0e0e0;
+}
+
+.dialog-pane {
+    -fx-padding: 40px;
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.text-field {
+}
+
+.text-area {
+}
+
+.button-bar .button {
+    -fx-alignment: center;
+}
+
