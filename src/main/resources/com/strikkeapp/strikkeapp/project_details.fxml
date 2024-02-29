@@ -4,11 +4,10 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.strikkeapp.strikkeapp.controllers.ProjectDetailsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="410.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.strikkeapp.strikkeapp.controllers.ProjectDetailsController">
    <children>
-      <Label fx:id="projectNameLabel" layoutX="286.0" layoutY="35.0" text="Label" />
-      <TextArea fx:id="projectDescriptionTextArea" layoutX="150.0" layoutY="102.0" prefHeight="181.0" prefWidth="328.0" />
-      <TextArea fx:id="projectNotesTextArea" layoutX="152.0" layoutY="283.0" prefHeight="65.0" prefWidth="328.0" />
+      <Label fx:id="projectNameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="14.0" prefHeight="17.0" prefWidth="387.0" text="label" textAlignment="CENTER" />
+      <TextArea fx:id="projectDescriptionTextArea" layoutX="44.0" layoutY="85.0" prefHeight="181.0" prefWidth="328.0" />
+      <TextArea fx:id="projectNotesTextArea" layoutX="44.0" layoutY="295.0" prefHeight="65.0" prefWidth="328.0" />
    </children>
 </AnchorPane>

@@ -1,12 +1,11 @@
 package com.strikkeapp.strikkeapp.controllers;
 
-import com.strikkeapp.strikkeapp.Application;
 import com.strikkeapp.strikkeapp.dbo.Project;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;

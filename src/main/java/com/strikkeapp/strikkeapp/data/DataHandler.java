@@ -33,8 +33,6 @@ public class DataHandler {
                             "integratedSecurity=true;" +
                             "trustServerCertificate=true;";
 
-            System.out.println(connectionString);
-
             System.out.println("Connecting to the database...");
 
             connection = DriverManager.getConnection(connectionString);

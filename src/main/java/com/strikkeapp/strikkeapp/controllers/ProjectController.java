@@ -4,6 +4,7 @@ import com.strikkeapp.strikkeapp.Application;
 import com.strikkeapp.strikkeapp.data.DataHandler;
 import com.strikkeapp.strikkeapp.data.ProjectData;
 import com.strikkeapp.strikkeapp.dbo.Project;
+import com.strikkeapp.strikkeapp.dbo.ProjectBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,7 +29,10 @@ import java.util.ResourceBundle;
 public class ProjectController implements Initializable {
 
     @FXML
-    VBox projectVbox;
+    FlowPane projectFlowBox = new FlowPane();
+
+    @FXML
+    Stage stage;
 
     private static Project currentProject;
 
@@ -78,7 +82,7 @@ public class ProjectController implements Initializable {
                 Project project = new Project(projectInfo.get(0), projectInfo.get(1), projectInfo.get(2));
 
                 ProjectData projectData = new ProjectData();
-                //projectData.insertProjectIntoDB(project);
+                projectData.insertProjectIntoDB(project);
 
                 addProject(project);
 
@@ -93,23 +97,18 @@ public class ProjectController implements Initializable {
     }
 
     private void addProject(Project project) {
-        HBox projectHbox = new HBox();
-        Label projectTitle = new Label();
+        ProjectBox projectBox = new ProjectBox(project.getName());
 
-        projectTitle.setText(project.getName());
+        projectFlowBox.getChildren().add(projectBox);
+        projectBox.getStyleClass().add("project-box");
 
-        projectHbox.getChildren().add(projectTitle);
-        projectVbox.getChildren().add(projectHbox);
-
-        projectHbox.getStyleClass().add("project-hbox");
-        projectHbox.setOnMouseClicked(mouseEvent -> {
+        projectBox.setOnMouseClicked(mouseEvent -> {
             try {
                 openProject(project.getName(), mouseEvent);
             } catch (IOException e) {
                 e.getMessage();
             }
         });
-
     }
 
     public void openProject(String projectTitle, MouseEvent event) throws IOException {
@@ -118,8 +117,10 @@ public class ProjectController implements Initializable {
 
         FXMLLoader loader = new FXMLLoader(Application.class.getResource("project_details.fxml"));
         Parent root = loader.load();
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
+        String css = Application.class.getResource("project_details.css").toExternalForm();
+        scene.getStylesheets().add(css);
         stage.setScene(scene);
         stage.show();
 
