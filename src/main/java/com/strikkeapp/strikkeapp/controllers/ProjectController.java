@@ -1,6 +1,7 @@
 package com.strikkeapp.strikkeapp.controllers;
 
 import com.strikkeapp.strikkeapp.Application;
+import com.strikkeapp.strikkeapp.controllers.loginControllers.LoginController;
 import com.strikkeapp.strikkeapp.data.DataHandler;
 import com.strikkeapp.strikkeapp.data.ProjectData;
 import com.strikkeapp.strikkeapp.dbo.Project;
@@ -129,7 +130,7 @@ public class ProjectController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ProjectData data = new ProjectData();
-        ArrayList<Project> projects = data.getAllProjects();
+        ArrayList<Project> projects = data.getProjectsByUserID(LoginController.currentUser.getUserID());
         for (Project project : projects) {
             addProject(project);
         }

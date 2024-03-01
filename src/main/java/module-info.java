@@ -11,6 +11,8 @@ module com.strikkeapp.strikkeapp {
     opens com.strikkeapp.strikkeapp to javafx.fxml;
     exports com.strikkeapp.strikkeapp.controllers;
     opens com.strikkeapp.strikkeapp.controllers to javafx.fxml;
+    exports com.strikkeapp.strikkeapp.controllers.loginControllers;
+    opens com.strikkeapp.strikkeapp.controllers.loginControllers to javafx.fxml;
     exports com.strikkeapp.strikkeapp.dbo;
     opens com.strikkeapp.strikkeapp.dbo to javafx.fxml;
 }

@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="600.0" stylesheets="@projects.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.strikkeapp.strikkeapp.controllers.ProjectController">
    <children>
-      <Button fx:id="AddProjectBtn" layoutX="230.0" layoutY="540.0" mnemonicParsing="false" onAction="#setAddProjectBtn" stylesheets="@projects.css" text="Tilføj projekt" />
+      <Button fx:id="AddProjectBtn" layoutX="230.0" layoutY="540.0" mnemonicParsing="false" onAction="#setAddProjectBtn" text="Tilføj projekt" />
       <FlowPane fx:id="projectFlowBox" layoutX="28.0" layoutY="23.0" prefHeight="480.0" prefWidth="546.0" />
    </children>
 </AnchorPane>

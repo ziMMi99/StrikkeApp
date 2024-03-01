@@ -1,5 +1,6 @@
 package com.strikkeapp.strikkeapp.data;
 
+import com.strikkeapp.strikkeapp.controllers.loginControllers.LoginController;
 import com.strikkeapp.strikkeapp.dbo.Project;
 
 import java.sql.CallableStatement;
@@ -12,10 +13,11 @@ public class ProjectData extends DataHandler{
 
     public void insertProjectIntoDB(Project project) {
 
-        try (CallableStatement cs = makeCall("{CALL project_addProject(?, ?, ?)}")) {
+        try (CallableStatement cs = makeCall("{CALL project_addProject(?, ?, ?, ?)}")) {
             cs.setString(1, project.getName());
-            cs.setString(2, project.getDescription());
-            cs.setString(3, project.getNote());
+            cs.setString(2, LoginController.getCurrentUser().getUserID());
+            cs.setString(3, project.getDescription());
+            cs.setString(4, project.getNote());
 
             cs.execute();
 
@@ -24,9 +26,10 @@ public class ProjectData extends DataHandler{
         }
     }
 
-    public ArrayList<Project> getAllProjects() {
+    public ArrayList<Project> getProjectsByUserID(String userID) {
         ArrayList<Project> projects = new ArrayList<>();
-        try (CallableStatement cs = makeCall("{CALL project_getALlProjects}")) {
+        try (CallableStatement cs = makeCall("{CALL project_getProjectsByUserID(?)}")) {
+            cs.setString(1, userID);
             ResultSet resultSet = cs.executeQuery();
 
             while (resultSet.next()) {
