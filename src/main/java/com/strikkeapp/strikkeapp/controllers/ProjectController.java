@@ -26,10 +26,9 @@ import java.util.ResourceBundle;
 /**
  * This class is the controller for the projects view. It is responsible for managing the display of projects and their details, as well as handling user interactions with projects.
  *
- * @author StrikeApp Team
+ * @author StrikkeApp Team
  */
 public class ProjectController implements Initializable {
-
     /**
      * The FlowPane that contains the project boxes.
      */
@@ -51,7 +50,7 @@ public class ProjectController implements Initializable {
     }
 
     /**
-     * Adds a new project to the list of projects.
+     * Adds functionality to the "Add project" button
      */
     public void setAddProjectBtn() {
         TextInputDialog textInputDialog = new TextInputDialog();
@@ -121,7 +120,7 @@ public class ProjectController implements Initializable {
             try {
                 openProject(project.getName(), mouseEvent);
             } catch (IOException e) {
-                e.getMessage();
+                System.out.println("Could not add the project to the pane" + e.getMessage());
             }
         });
     }
@@ -145,9 +144,14 @@ public class ProjectController implements Initializable {
         scene.getStylesheets().add(css);
         stage.setScene(scene);
         stage.show();
-
     }
 
+    /**
+     * Method is run when the projectController class is initialized
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ProjectData data = new ProjectData();

@@ -94,9 +94,12 @@ IF OBJECT_ID('users_getUserIDByName', 'P') IS NOT NULL
     DROP PROCEDURE users_getUserIDByName;
 GO
 
-CREATE PROCEDURE users_getUserIDByName @name NVARCHAR(100)
+CREATE PROCEDURE users_getUserIDByName
+    @name NVARCHAR(100)
 AS
-SELECT userID FROM Users WHERE username = @name;
+BEGIN
+    SELECT userID FROM Users WHERE username = @name;
+END
 GO
 
 --Add project

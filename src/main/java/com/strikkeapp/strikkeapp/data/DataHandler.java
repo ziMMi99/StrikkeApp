@@ -48,6 +48,12 @@ public class DataHandler {
         }
     }
 
+    /**
+     * Makes call to db
+     *
+     * @param procedure - stored procedure
+     * @return - callablestatement
+     */
     public CallableStatement makeCall(String procedure) {
         try  {
             return connection.prepareCall(procedure);

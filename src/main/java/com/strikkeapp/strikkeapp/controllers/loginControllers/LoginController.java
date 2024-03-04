@@ -1,7 +1,6 @@
 package com.strikkeapp.strikkeapp.controllers.loginControllers;
 
 import com.strikkeapp.strikkeapp.Application;
-import com.strikkeapp.strikkeapp.data.DataHandler;
 import com.strikkeapp.strikkeapp.data.LoginData;
 import com.strikkeapp.strikkeapp.dbo.User;
 import javafx.event.ActionEvent;

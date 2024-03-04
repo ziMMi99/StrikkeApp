@@ -8,8 +8,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * ProjectData class, that extends DataHandler.
+ * Takes care of all sql, and database related code
+ * Makes use of "makeCall()" method from DataHandler
+ *
+ * @author StrikkeApp team
+ */
 public class ProjectData extends DataHandler{
 
+    /**
+     * Makes a call to a stored procedure, which inserts a project into the database
+     *
+     * @param project - The project to be inserted
+     */
     public void insertProjectIntoDB(Project project) {
 
         try (CallableStatement cs = makeCall("{CALL project_addProject(?, ?, ?, ?)}")) {
@@ -25,6 +37,12 @@ public class ProjectData extends DataHandler{
         }
     }
 
+    /**
+     * Gets all projects made by a specific user.
+     *
+     * @param userID - The user whose projects are to be returned
+     * @return ArrayList - All projects made by the user
+     */
     public ArrayList<Project> getProjectsByUserID(String userID) {
         ArrayList<Project> projects = new ArrayList<>();
         try (CallableStatement cs = makeCall("{CALL project_getProjectsByUserID(?)}")) {
@@ -45,6 +63,12 @@ public class ProjectData extends DataHandler{
         return projects;
     }
 
+    /**
+     * Method to retrieve a specific project from the database using the name
+     *
+     * @param projectName - the name of the project to find in the database
+     * @return Project - and instance of the project class
+     */
     public Project getProjectByName(String projectName) {
         Project project = null;
         try (CallableStatement cs = makeCall("{CALL project_getProjectByName(?)}")){
