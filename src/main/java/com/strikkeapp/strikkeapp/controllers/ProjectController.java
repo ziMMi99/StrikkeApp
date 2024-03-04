@@ -27,20 +27,36 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * This class is the controller for the projects view. It is responsible for managing the display of projects and their details, as well as handling user interactions with projects.
+ *
+ * @author StrikeApp Team
+ */
 public class ProjectController implements Initializable {
 
+    /**
+     * The FlowPane that contains the project boxes.
+     */
     @FXML
-    FlowPane projectFlowBox = new FlowPane();
+    private FlowPane projectFlowBox;
 
-    @FXML
-    Stage stage;
-
+    /**
+     * The current project that is being viewed.
+     */
     private static Project currentProject;
 
+    /**
+     * Returns the current project that is being viewed.
+     *
+     * @return the current project
+     */
     public static Project getCurrentProject() {
         return currentProject;
     }
 
+    /**
+     * Adds a new project to the list of projects.
+     */
     public void setAddProjectBtn() {
         TextInputDialog textInputDialog = new TextInputDialog();
         textInputDialog.getDialogPane().getStylesheets().add(Application.class.getResource("projects.css").toExternalForm());
@@ -53,7 +69,7 @@ public class ProjectController implements Initializable {
         TextField pro_name = new TextField();
         TextArea pro_desc = new TextArea();
         TextArea pro_note = new TextArea();
-        pro_note.setPrefSize(100,100);
+        pro_note.setPrefSize(100, 100);
         pro_name.setPromptText("Enter project name");
         pro_desc.setPromptText("Enter project Description");
         pro_note.setPromptText("Enter project notes");
@@ -63,13 +79,12 @@ public class ProjectController implements Initializable {
         grid.setVgap(10);
         grid.setPadding(new Insets(20, 10, 10, 10));
 
-        grid.add(new Label("Project name: "), 1,1);
-        grid.add(pro_name,1,1);
-        grid.add(new Label("Project Description: "), 1,2);
-        grid.add(pro_desc,1,2);
+        grid.add(new Label("Project name: "), 1, 1);
+        grid.add(pro_name, 1, 1);
+        grid.add(new Label("Project Description: "), 1, 2);
+        grid.add(pro_desc, 1, 2);
         grid.add(new Label("Project Notes: "), 1, 3);
-        grid.add(pro_note,1,3);
-
+        grid.add(pro_note, 1, 3);
 
         textInputDialog.getDialogPane().setContent(grid);
 
@@ -93,10 +108,13 @@ public class ProjectController implements Initializable {
         });
 
         Optional<String> result = textInputDialog.showAndWait();
-
-
     }
 
+    /**
+     * Adds a project box to the list of projects and sets its properties.
+     *
+     * @param project the project to add
+     */
     private void addProject(Project project) {
         ProjectBox projectBox = new ProjectBox(project.getName());
 
@@ -112,13 +130,20 @@ public class ProjectController implements Initializable {
         });
     }
 
+    /**
+     * Opens the project details view for the specified project.
+     *
+     * @param projectTitle the title of the project
+     * @param event the mouse event that triggered the action
+     * @throws IOException if there is an error loading the FXML file
+     */
     public void openProject(String projectTitle, MouseEvent event) throws IOException {
         ProjectData data = new ProjectData();
         currentProject = data.getProjectByName(projectTitle);
 
         FXMLLoader loader = new FXMLLoader(Application.class.getResource("project_details.fxml"));
         Parent root = loader.load();
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         String css = Application.class.getResource("project_details.css").toExternalForm();
         scene.getStylesheets().add(css);
@@ -134,7 +159,5 @@ public class ProjectController implements Initializable {
         for (Project project : projects) {
             addProject(project);
         }
-
-
     }
 }

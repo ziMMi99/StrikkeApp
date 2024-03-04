@@ -5,22 +5,28 @@ import java.util.ArrayList;
 public class User {
     private String userID, username, password, email, firstname, lastname;
 
-    //Constructor when making a new user
-    public User(String username, String password, String email, String firstname, String lastname) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.firstname = firstname;
-        this.lastname = lastname;
-    }
-    //Constructor
-    public User(String username, String email, String firstname, String lastname) {
-        this.username = username;
-        this.email = email;
-        this.firstname = firstname;
-        this.lastname = lastname;
-    }
+    /**
+ * Creates a new user with the given details.
+ *
+ * @param username the username of the user
+ * @param password the password of the user
+ * @param email the email of the user
+ * @param firstname the firstname of the user
+ * @param lastname the lastname of the user
+ */
+public User(String username, String password, String email, String firstname, String lastname) {
+    this.username = username;
+    this.password = password;
+    this.email = email;
+    this.firstname = firstname;
+    this.lastname = lastname;
+}
 
+    /**
+     * Constructor for User class. Used when making a user for checking which user is logged in.
+     * @param userID is the ID of the user
+     * @param username is the username of the user
+     */
     public User(String userID, String username) {
         this.userID = userID;
         this.username = username;
