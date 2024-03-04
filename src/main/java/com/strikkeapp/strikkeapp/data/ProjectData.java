@@ -6,7 +6,6 @@ import com.strikkeapp.strikkeapp.dbo.Project;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 public class ProjectData extends DataHandler{

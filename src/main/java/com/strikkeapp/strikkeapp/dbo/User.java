@@ -1,7 +1,5 @@
 package com.strikkeapp.strikkeapp.dbo;
 
-import java.util.ArrayList;
-
 public class User {
     private String userID, username, password, email, firstname, lastname;
 
