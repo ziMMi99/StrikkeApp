@@ -1,6 +1,5 @@
 package com.strikkeapp.strikkeapp.controllers.loginControllers;
-
-import com.strikkeapp.strikkeapp.Application;
+import com.strikkeapp.strikkeapp.Main;
 import com.strikkeapp.strikkeapp.data.LoginData;
 import com.strikkeapp.strikkeapp.dbo.User;
 import javafx.event.ActionEvent;
@@ -47,7 +46,7 @@ public class LoginController {
         Parent root = loader.load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
-        String css = Application.class.getResource("projects.css").toExternalForm();
+        String css = Main.class.getResource("projects.css").toExternalForm();
         scene.getStylesheets().add(css);
         stage.setScene(scene);
         stage.show();
@@ -59,12 +58,12 @@ public class LoginController {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         byte[] hash = md.digest(password.getBytes());
 
-        StringBuilder HashedInputPassword = new StringBuilder();
+        StringBuilder hashedInputPassword = new StringBuilder();
         for (byte b : hash) {
-            HashedInputPassword.append(String.format("%02x", b));
+            hashedInputPassword.append(String.format("%02x", b));
         }
 
-        return data.getHashedPassword(username).contentEquals(HashedInputPassword);
+        return data.getHashedPassword(username).contentEquals(hashedInputPassword);
     }
 
 

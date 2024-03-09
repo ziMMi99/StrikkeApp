@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class RegisterController {
@@ -53,7 +53,7 @@ public class RegisterController {
 
     public boolean checkIfUsernameExists(String username) {
         RegisterData data = new RegisterData();
-        ArrayList<String> usernames = data.getAllUsernames();
+        List<String> usernames = data.getAllUsernames();
 
         return usernames.contains(username);
     }
@@ -68,11 +68,7 @@ public class RegisterController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Hey there!");
             alert.setContentText("Please fill out everything!");
-            Optional<ButtonType> result = alert.showAndWait();
-
-            if (result.isEmpty()) {
-                System.out.println("Alert closed");
-            }
+            alert.showAndWait();
             return; // At least one field is empty, so return without processing
         }
 
@@ -84,15 +80,11 @@ public class RegisterController {
         String lastname = lastnameField.getText();
 
 
-        if (checkIfUsernameExists(username)) {
+        if (!checkIfUsernameExists(username)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Hey there!");
             alert.setContentText("Username already exists");
-            Optional<ButtonType> result = alert.showAndWait();
-
-            if (result.isEmpty()) {
-                System.out.println("Alert closed");
-            }
+            alert.showAndWait();
             return;
         }
 
@@ -121,7 +113,7 @@ public class RegisterController {
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isEmpty()) {
-            System.out.println("Alert closed");
+
         } else if (result.get() == ButtonType.OK) {
             try {
                 switchToLogin(event);

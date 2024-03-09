@@ -3,8 +3,9 @@ package com.strikkeapp.strikkeapp.dbo;
 public class Project {
     //Class variables
 
-    String name, description, note;
-
+    String name;
+    String description;
+    String note;
     public Project(String name, String description, String note) {
         this.name = name;
         this.description = description;

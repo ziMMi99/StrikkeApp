@@ -1,6 +1,6 @@
 package com.strikkeapp.strikkeapp.controllers;
 
-import com.strikkeapp.strikkeapp.Application;
+import com.strikkeapp.strikkeapp.Main;
 import com.strikkeapp.strikkeapp.controllers.loginControllers.LoginController;
 import com.strikkeapp.strikkeapp.data.ProjectData;
 import com.strikkeapp.strikkeapp.dbo.Project;
@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -54,20 +55,20 @@ public class ProjectController implements Initializable {
      */
     public void setAddProjectBtn() {
         TextInputDialog textInputDialog = new TextInputDialog();
-        textInputDialog.getDialogPane().getStylesheets().add(Application.class.getResource("projects.css").toExternalForm());
+        textInputDialog.getDialogPane().getStylesheets().add(Main.class.getResource("projects.css").toExternalForm());
 
         textInputDialog.setTitle("New Project");
         textInputDialog.setHeaderText("Enter Project information");
 
         textInputDialog.getDialogPane().getButtonTypes().set(0, ButtonType.FINISH);
 
-        TextField pro_name = new TextField();
-        TextArea pro_desc = new TextArea();
-        TextArea pro_note = new TextArea();
-        pro_note.setPrefSize(100, 100);
-        pro_name.setPromptText("Enter project name");
-        pro_desc.setPromptText("Enter project Description");
-        pro_note.setPromptText("Enter project notes");
+        TextField proName = new TextField();
+        TextArea proDesc = new TextArea();
+        TextArea proNote = new TextArea();
+        proNote.setPrefSize(100, 100);
+        proName.setPromptText("Enter project name");
+        proDesc.setPromptText("Enter project Description");
+        proNote.setPromptText("Enter project notes");
 
         GridPane grid = new GridPane();
         grid.setHgap(10);
@@ -75,20 +76,20 @@ public class ProjectController implements Initializable {
         grid.setPadding(new Insets(20, 10, 10, 10));
 
         grid.add(new Label("Project name: "), 1, 1);
-        grid.add(pro_name, 1, 1);
+        grid.add(proName, 1, 1);
         grid.add(new Label("Project Description: "), 1, 2);
-        grid.add(pro_desc, 1, 2);
+        grid.add(proDesc, 1, 2);
         grid.add(new Label("Project Notes: "), 1, 3);
-        grid.add(pro_note, 1, 3);
+        grid.add(proNote, 1, 3);
 
         textInputDialog.getDialogPane().setContent(grid);
 
         textInputDialog.setResultConverter(dialogButton -> {
             ArrayList<String> projectInfo = new ArrayList<>();
             if (dialogButton == ButtonType.FINISH) {
-                projectInfo.add(pro_name.getText());
-                projectInfo.add(pro_desc.getText());
-                projectInfo.add(pro_note.getText());
+                projectInfo.add(proName.getText());
+                projectInfo.add(proDesc.getText());
+                projectInfo.add(proNote.getText());
 
                 Project project = new Project(projectInfo.get(0), projectInfo.get(1), projectInfo.get(2));
 
@@ -102,7 +103,7 @@ public class ProjectController implements Initializable {
             return null;
         });
 
-        Optional<String> result = textInputDialog.showAndWait();
+        textInputDialog.showAndWait();
     }
 
     /**
@@ -136,11 +137,11 @@ public class ProjectController implements Initializable {
         ProjectData data = new ProjectData();
         currentProject = data.getProjectByName(projectTitle);
 
-        FXMLLoader loader = new FXMLLoader(Application.class.getResource("project_details.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("project_details.fxml"));
         Parent root = loader.load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
-        String css = Application.class.getResource("project_details.css").toExternalForm();
+        String css = Main.class.getResource("project_details.css").toExternalForm();
         scene.getStylesheets().add(css);
         stage.setScene(scene);
         stage.show();
@@ -155,7 +156,7 @@ public class ProjectController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ProjectData data = new ProjectData();
-        ArrayList<Project> projects = data.getProjectsByUserID(LoginController.currentUser.getUserID());
+        List<Project> projects = data.getProjectsByUserID(LoginController.currentUser.getUserID());
         for (Project project : projects) {
             addProject(project);
         }

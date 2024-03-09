@@ -1,0 +1,8 @@
+
+Ÿ
+java:S1104"WMake currentUser a static final constant or non-public and provide accessors if needed.(˜ˆí€úÿÿÿÿ8‹İ¤©â1J$7932955f-ea3d-44f5-b3b9-c66b642ddcc4
+y
+java:S1444"1Make this "public static currentUser" field final(˜ˆí€úÿÿÿÿ8‹İ¤©â1J$7d0bed91-08b2-4a96-a821-ed2491db2083
+•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¡©ÿ¥J$f98da6b2-aee7-4b85-872f-3200c16887c2
+w
+java:S2696N"6Make the enclosing method "static" or remove this set.(ØòÎıÿÿÿÿJ$33b4eac7-b0c0-42d5-ab04-5a03e8308b31

@@ -7,6 +7,7 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * ProjectData class, that extends DataHandler.
@@ -43,7 +44,7 @@ public class ProjectData extends DataHandler{
      * @param userID - The user whose projects are to be returned
      * @return ArrayList - All projects made by the user
      */
-    public ArrayList<Project> getProjectsByUserID(String userID) {
+    public List<Project> getProjectsByUserID(String userID) {
         ArrayList<Project> projects = new ArrayList<>();
         try (CallableStatement cs = makeCall("{CALL project_getProjectsByUserID(?)}")) {
             cs.setString(1, userID);
@@ -83,7 +84,7 @@ public class ProjectData extends DataHandler{
                 project = new Project(name, description, note);
             }
         } catch (SQLException e) {
-
+            System.out.println("Could not retrieve project from the database - " + e.getMessage());
         }
         return project;
     }

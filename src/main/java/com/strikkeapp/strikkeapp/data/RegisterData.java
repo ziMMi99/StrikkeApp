@@ -6,10 +6,11 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RegisterData extends DataHandler {
 
-    public ArrayList<String> getAllUsernames() {
+    public List<String> getAllUsernames() {
         ArrayList<String> usernames = new ArrayList<>();
         try (CallableStatement cs = makeCall("{CALL users_getAllUsernames}")){
             ResultSet resultSet = cs.executeQuery();

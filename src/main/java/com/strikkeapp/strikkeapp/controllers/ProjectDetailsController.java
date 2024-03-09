@@ -18,8 +18,6 @@ public class ProjectDetailsController implements Initializable {
     @FXML
     private TextArea projectNotesTextArea;
 
-    Project currentProject = ProjectController.getCurrentProject();
-
     public void setProjectInfo(Project project) {
         projectNameLabel.setText(project.getName());
         projectDescriptionTextArea.setText(project.getDescription());
@@ -28,6 +26,7 @@ public class ProjectDetailsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Project currentProject = ProjectController.getCurrentProject();
         setProjectInfo(currentProject);
 
     }

@@ -4,10 +4,11 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LoginData extends DataHandler {
 
-    public ArrayList<String> getAllUsernames(String input) {
+    public List<String> getAllUsernames(String input) {
         ArrayList<String> usernames = new ArrayList<>();
         try (CallableStatement cs = makeCall("{CALL users_getAllUsernames(?)}")){
             cs.setString(1,input);

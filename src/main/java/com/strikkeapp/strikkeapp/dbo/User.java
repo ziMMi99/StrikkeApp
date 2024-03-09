@@ -1,7 +1,13 @@
 package com.strikkeapp.strikkeapp.dbo;
 
 public class User {
-    private String userID, username, password, email, firstname, lastname;
+
+    private String userID;
+    private String username;
+    private String password;
+    private String email;
+    private String firstname;
+    private String lastname;
 
     /**
  * Creates a new user with the given details.
@@ -30,7 +36,6 @@ public User(String username, String password, String email, String firstname, St
         this.username = username;
     }
 
-
     @Override
     public String toString() {
         return "User{" +
@@ -42,8 +47,8 @@ public User(String username, String password, String email, String firstname, St
                 '}';
     }
 
-    //Getters
 
+    //Getters
     public String getUserID() {
         return userID;
     }

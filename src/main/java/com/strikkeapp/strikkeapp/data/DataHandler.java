@@ -7,29 +7,15 @@ public class DataHandler {
     private Connection connection;
 
     public DataHandler() {
-        loadJdbcDriver();
-        openConnection();
+        openConnection("Strik_DB");
     }
 
-    private void loadJdbcDriver() {
-        try {
-            System.out.println("Loading JDBC driver...");
-
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-
-            System.out.println("JDBC driver loaded");
-
-        } catch (ClassNotFoundException e) {
-            System.out.println("Could not load JDBC driver!");
-        }
-    }
-
-    private void openConnection() {
+    private void openConnection(String databaseName) {
         try {
             String connectionString =
                     "jdbc:sqlserver://localhost:1433;" +
                             "instanceName=SQLEXPRESS;" +
-                            "databaseName=" + "Strik_DB" + ";" +
+                            "databaseName=" + databaseName + ";" +
                             "integratedSecurity=true;" +
                             "trustServerCertificate=true;";
 
@@ -41,8 +27,8 @@ public class DataHandler {
 
         } catch (SQLException e) {
 
-            System.out.println("Could not connect to database: " + "Strik_DB");
-            System.out.println("Could not connect to the database: " + "Strik_DB");
+            System.out.println("Could not connect to database: " + databaseName);
+            System.out.println("Could not connect to the database: " + databaseName);
 
             System.out.println(e.getMessage());
         }
